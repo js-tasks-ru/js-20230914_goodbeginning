@@ -1,4 +1,6 @@
 export default class NotificationMessage {
+  static active;
+
   constructor(text = '', data = {}) {
     const {duration, type} = data;
     this.text = text;
@@ -28,11 +30,10 @@ export default class NotificationMessage {
   }
 
   show(target = document.body) {
-    const notificationDiv = target.querySelector('div.notification');
-
-    if (notificationDiv !== null) {
-      notificationDiv.remove();
+    if (this.active) {
+      this.active.destroy();
     }
+    this.active = this;
 
     target.append(this.element);
     this.timeoutId = setTimeout(() => this.destroy(), this.duration);
@@ -46,5 +47,6 @@ export default class NotificationMessage {
     clearTimeout(this.timeoutId);
     this.timeoutId = null;
     this.remove();
+    this.active = null;
   }
 }
