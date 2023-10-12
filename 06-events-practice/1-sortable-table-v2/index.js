@@ -25,7 +25,6 @@ export default class SortableTable {
 
   /**
    * ( не менял )
-   *
    * Создаём шаблон div-а шапки таблицы.
    *
    * @returns {string}
@@ -37,16 +36,18 @@ export default class SortableTable {
   }
 
   /**
-   * ( не менял )
-   *
+   * ( ОБНОВЛЕННЫЙ ШАБЛОН )
    * Создаёт шаблон div-а колонок таблицы.
    *
    * @returns {string}
    */
   getColonTemplate() {
     return this.headerConfig.map(({id, sortable, title}) => {
-      return `<div class="sortable-table__cell" data-sortable="${sortable}" data-name="${id}">
+      return `<div class="sortable-table__cell" data-sortable="${sortable}" data-name="${id}" data-id="${this.sortDefault.id === id ? this.sortDefault.id : ""}">
                      <span>${title}</span>
+                      <span data-element="arrow" class="sortable-table__sort-arrow">
+              <span class="sort-arrow"></span>
+            </span>
                  </div>`;
     }).join('');
   }
