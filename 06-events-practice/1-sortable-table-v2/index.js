@@ -47,9 +47,6 @@ export default class SortableTable {
     return this.headerConfig.map(({id, sortable, title}) => {
       return `<div class="sortable-table__cell" data-sortable="${sortable}" data-name="${id}">
                      <span>${title}</span>
-                      <span data-element="arrow" class="sortable-table__sort-arrow">
-              <span class="sort-arrow"></span>
-            </span>
                  </div>`;
     }).join('');
   }
